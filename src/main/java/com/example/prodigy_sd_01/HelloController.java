@@ -37,24 +37,30 @@ public class HelloController implements Initializable {
                 celsius = Double.parseDouble(temperatureInput.getText());
                 fahrenheit = 1.80 * celsius + 32.0;
                 kelvin = celsius + 273.15;
-                temperatureOutput.setText("Fahrenheit = " + fahrenheit + ", "
-                        + "Kelvin = " + kelvin);
+                String formattedFahrenheit = String.format("%.4f", fahrenheit);
+                String formattedKelvin = String.format("%.4f", kelvin);
+                temperatureOutput.setText("Fahrenheit = " + formattedFahrenheit + ", "
+                        + "Kelvin = " + formattedKelvin);
             } else if (Objects.equals(unit, "Fahrenheit")) {
                 fahrenheit = Double.parseDouble(temperatureInput.getText());
                 celsius = (fahrenheit - 32) / 1.80;
                 kelvin = (5.0 / 9.0) * (fahrenheit - 32) + 273.15;
-                temperatureOutput.setText("Celsius = " + celsius + ", "
-                        + "Kelvin = " + kelvin);
+                String formattedCelsius = String.format("%.4f", celsius);
+                String formattedKelvin = String.format("%.4f", kelvin);
+                temperatureOutput.setText("Celsius = " + formattedCelsius + ", "
+                        + "Kelvin = " + formattedKelvin);
             } else if (Objects.equals(unit, "Kelvin")) {
                 kelvin = Double.parseDouble(temperatureInput.getText());
                 if(kelvin < 0){
-                    temperatureOutput.setText("The Kelvin scale does not contain negative values. Use positive temperatures.");
+                    temperatureOutput.setText("The Kelvin scale does not contain negative values.");
                 }
                 else {
                     celsius = kelvin - 273.15;
                     fahrenheit = 1.8 * (kelvin - 273.15) + 32;
-                    temperatureOutput.setText("Celsius = " + celsius + ", "
-                            + "Fahrenheit = " + fahrenheit);
+                    String formattedCelsius = String.format("%.4f", celsius);
+                    String formattedFahrenheit = String.format("%.4f", fahrenheit);
+                    temperatureOutput.setText("Celsius = " + formattedCelsius + ", "
+                            + "Fahrenheit = " + formattedFahrenheit);
                 }
             } else temperatureOutput.setText("Choose a unit");
         }
